@@ -5,6 +5,7 @@ c.width = window.innerWidth
 c.height = window.innerHeight
 let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
+let backdrop = new Tiles(ctx, tileSet, 10,20)
 
 let controllerIndex= null;
 let leftPressed = false;
@@ -105,7 +106,6 @@ playerUpdate()
     c.height = window.innerHeight
     for(let i = 0; i<c.width; i++){
         for(let b = 0; b<c.height; b++){
-        let backdrop = new Tiles(ctx, tileSet, 10,20)
             backdrop.draw(i,b)
             
         }
@@ -121,4 +121,3 @@ requestAnimationFrame(update)
 
 update()
 
-mapUpdate()
