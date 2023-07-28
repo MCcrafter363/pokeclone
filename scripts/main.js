@@ -96,6 +96,7 @@ function playerUpdate(){
     }
 }
 
+
 function update(){
 controllerInput()
 playerUpdate()
