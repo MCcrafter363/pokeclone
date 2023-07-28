@@ -64,6 +64,7 @@ function controllerInput(){
         let gamepad = navigator.getGamepads()[controllerIndex]
         let buttons = gamepad.buttons
         let leftrightvalue = gamepad.axes[0]
+        let updownvalue = gamepad.axes[1]
 
         let stickDeadzone = 0.4
         
@@ -77,6 +78,12 @@ function controllerInput(){
             rightPressed = true
         } else if(leftrightvalue <= -stickDeadzone){
             leftPressed = true
+        }
+
+        if(updownvalue >= stickDeadzone){
+            downPressed = true
+        } else if(updownvalue <= -stickDeadzone){
+            upPressed = true
         }
     }
 }
