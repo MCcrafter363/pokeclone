@@ -11,6 +11,7 @@ let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
 
 let backdrop = new Tiles(bgctx, tileSet, 10,20)
+
 for(let i = 0; i<c.width; i++){
         for(let b = 0; b<c.height; b++){
             backdrop.draw(i,b)
@@ -19,15 +20,15 @@ for(let i = 0; i<c.width; i++){
     }
         for(let i = -1; i<8; i++){
             for(let b = 0; b<7; b++){
-            let layer = new Tiles(bgctx,tileSet, i,b)
-            layer.draw(i-2, b)
+            let layer1 = new Tiles(bgctx,tileSet, i,b)
+            layer1.draw(i, b)
         }
         }
         
         for(let i = 0; i<5; i++){
             for(let b = 7; b<12; b++){
-            let layer = new Tiles(bgctx,tileSet, i,b)
-            layer.draw(i+5, b-8)
+            let layer2 = new Tiles(bgctx,tileSet, i,b)
+            layer2.draw(i, b)
         }
         }
 
@@ -90,16 +91,16 @@ function controllerInput(){
 
 
 function playerUpdate(){
-    if(upPressed == true){
+    if(upPressed == true ){
         player.y -= 20
     }
-    if(downPressed == true){
+    if(downPressed == true ){
         player.y += 20
     }
-    if(rightPressed == true){
+    if(rightPressed == true ){
         player.x += 20
     }
-    if(leftPressed == true){
+    if(leftPressed == true ){
         player.x -= 20
     }
 }
@@ -111,7 +112,6 @@ playerUpdate()
 
     c.width = window.innerWidth
     c.height = window.innerHeight
-
 
 ctx.clearRect(player.x, player.y, player.width, player.height)
 ctx.drawImage(background, 0, 0, c.width, c.height, 0, 0, c.width, c.height)
