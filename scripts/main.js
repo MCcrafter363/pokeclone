@@ -52,32 +52,6 @@ window.addEventListener("gamepaddisconnected", (event)=>{
     
 })
 
-
-
-
-// function mapUpdate(){
-
-//     for(let i = 0; i<c.width; i++){
-//     for(let b = 0; b<c.height; b++){
-//         backdrop.draw(i,b)
-        
-//     }
-// }
-//     for(let i = -1; i<8; i++){
-//         for(let b = 0; b<7; b++){
-//         let layer = new Tiles(bgctx,tileSet, i,b)
-//         layer.draw(i-2, b)
-//     }
-//     }
-    
-//     for(let i = 0; i<5; i++){
-//         for(let b = 7; b<12; b++){
-//         let layer = new Tiles(bgctx,tileSet, i,b)
-//         layer.draw(i+5, b-8)
-//     }
-//     }
-// }
-
 let player = {
     x:0,
     y:0,
