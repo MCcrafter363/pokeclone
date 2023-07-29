@@ -1,4 +1,9 @@
+import { settings } from "./gameSettings.js"
+import { InitState } from "./states/initState.js"
+import { StateManager } from "./states/stateManager.js"
 import { Tiles } from "/scripts/tileTemplate.js"
+
+const setting = settings
 
 let c = document.getElementById("main")
 let background = document.getElementById("map")
@@ -12,25 +17,34 @@ let tileSet = document.getElementById("tiles")
 
 let backdrop = new Tiles(bgctx, tileSet, 10,20)
 
-for(let i = 0; i<c.width; i++){
-        for(let b = 0; b<c.height; b++){
-            backdrop.draw(i,b)
+let stateManager = new StateManager()
+let initState = new InitState()
+initState.init(settings.images)
+stateManager.setState(initState)
+
+//draw backdrop
+// for(let i = 0; i<c.width; i++){
+//         for(let b = 0; b<c.height; b++){
+//             backdrop.draw(i,b)
             
-        }
-    }
-        for(let i = -1; i<8; i++){
-            for(let b = 0; b<7; b++){
-            let layer1 = new Tiles(bgctx,tileSet, i,b)
-            layer1.draw(i, b)
-        }
-        }
+//         }
+//     }
+
+//     //draw house
+//         for(let i = -1; i<8; i++){
+//             for(let b = 0; b<7; b++){
+//             let layer1 = new Tiles(bgctx,tileSet, i,b)
+//             layer1.draw(i, b)
+//         }
+//         }
         
-        for(let i = 0; i<5; i++){
-            for(let b = 7; b<12; b++){
-            let layer2 = new Tiles(bgctx,tileSet, i,b)
-            layer2.draw(i, b)
-        }
-        }
+//         //draw tree
+//         for(let i = 0; i<5; i++){
+//             for(let b = 7; b<12; b++){
+//             let layer2 = new Tiles(bgctx,tileSet, i,b)
+//             layer2.draw(i, b)
+//         }
+//         }
 
 
 let controllerIndex= null;
@@ -107,13 +121,15 @@ function playerUpdate(){
 
 
 function update(){
+    stateManager.update()
+    stateManager.render()
 controllerInput()
 playerUpdate()
 
     c.width = window.innerWidth
     c.height = window.innerHeight
 
-ctx.clearRect(player.x, player.y, player.width, player.height)
+ctx.clearRect(0,0, c.width, c.height)
 ctx.drawImage(background, 0, 0, c.width, c.height, 0, 0, c.width, c.height)
 ctx.fillRect(player.x, player.y, player.width, player.height)
 
