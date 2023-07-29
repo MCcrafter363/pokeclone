@@ -1,7 +1,9 @@
+import { DrawTile } from "./drawTile.js"
 import { Game } from "./game.js"
 import { settings } from "./gameSettings.js"
 import { InitState } from "./states/initState.js"
 import { StateManager } from "./states/stateManager.js"
+import { Vector2 } from "./util/vector2.js"
 import { Tiles } from "/scripts/tiles.js"
 
 const setting = settings
@@ -16,8 +18,16 @@ background.height = window.innerHeight
 let bgctx = background.getContext("2d")
 let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
+let tileSize = new Vector2(12,12)
+let offset = new Vector2(10,10)
+let destination = new Vector2(0,0)
+let size = new Vector2(60,60)
+let backdrop = new Tiles(tileSet, 10,20, tileSize, offset)
+let draw = new DrawTile(bgctx, backdrop, destination, size)
 
-//let backdrop = new Tiles(bgctx, tileSet, 10,20)
+
+
+
 
 let stateManager = new StateManager()
 let initState = new InitState(game)
