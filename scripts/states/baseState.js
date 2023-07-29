@@ -1,13 +1,15 @@
 export class BaseState{
 
-    constructor(){
+    game
 
+    constructor(game){
+        this.game = game
     }
 
     init(){
 
     }   
-     
+
     update(){
 
     }

@@ -5,27 +5,24 @@ export class InitState extends BaseState{
 
 
 
-    constructor(){
-        super()
+    constructor(game){
+        super(game)
     }
 
     init(list_img){
-        let images = {
-
-        }
         Object.entries(list_img).forEach(img=>{
             const [key,value] = img
             let imgl = new ImgLoader(value)
             imgl.load((returnedImage)=>{
-                images[key] = returnedImage
+                this.game.images[key] = returnedImage
             })
             
         })
-        console.log(images)
+        
     }
 
     update(){
-        
+        console.log(this.game)
     }
 
     render(){

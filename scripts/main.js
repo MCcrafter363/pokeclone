@@ -1,9 +1,11 @@
+import { Game } from "./game.js"
 import { settings } from "./gameSettings.js"
 import { InitState } from "./states/initState.js"
 import { StateManager } from "./states/stateManager.js"
-import { Tiles } from "/scripts/tileTemplate.js"
+import { Tiles } from "/scripts/tiles.js"
 
 const setting = settings
+const game = Game
 
 let c = document.getElementById("main")
 let background = document.getElementById("map")
@@ -15,10 +17,10 @@ let bgctx = background.getContext("2d")
 let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
 
-let backdrop = new Tiles(bgctx, tileSet, 10,20)
+//let backdrop = new Tiles(bgctx, tileSet, 10,20)
 
 let stateManager = new StateManager()
-let initState = new InitState()
+let initState = new InitState(game)
 initState.init(settings.images)
 stateManager.setState(initState)
 
