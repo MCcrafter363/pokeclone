@@ -18,12 +18,25 @@ background.height = window.innerHeight
 let bgctx = background.getContext("2d")
 let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
+
+let tilepositionSS = new Vector2(19,6)
 let tileSize = new Vector2(12,12)
-let offset = new Vector2(10,10)
+let offset = new Vector2(12,12)
 let destination = new Vector2(0,0)
-let size = new Vector2(60,60)
-let backdrop = new Tiles(tileSet, 10,20, tileSize, offset)
-let draw = new DrawTile(bgctx, backdrop, destination, size)
+let bgsize = new Vector2(c.width,c.height)
+let backdrop = new Tiles(tileSet, tilepositionSS.x,tilepositionSS.y, tileSize, offset)
+let draw = new DrawTile(bgctx, backdrop)
+
+
+let housepos = new Vector2(0,0)
+let houseoff = new Vector2(96,96)
+let housescreenpos = new Vector2(120,120)
+let houseTileSize = new Vector2(120,120)
+let housesize = new Vector2(120,120)
+let house = new Tiles(tileSet, housepos.x, housepos.y, houseTileSize, houseoff)
+let drawHouse = new DrawTile(bgctx, house)
+
+
 
 
 
@@ -80,10 +93,10 @@ window.addEventListener("gamepaddisconnected", (event)=>{
 })
 
 let player = {
-    x:0,
-    y:0,
-    width:50,
-    height:50
+    x:10,
+    y:10,
+    width:60,
+    height:60
 }
 
 function controllerInput(){
@@ -135,6 +148,8 @@ function playerUpdate(){
 function update(){
     stateManager.update()
     stateManager.render()
+    draw.draw(destination, bgsize)
+drawHouse.draw(housescreenpos, housesize)
 controllerInput()
 playerUpdate()
 

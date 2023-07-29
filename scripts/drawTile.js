@@ -2,15 +2,26 @@ import { Tiles } from "./tiles.js";
 import { Vector2 } from "./util/vector2.js";
 
 export class DrawTile{
+    ctx
+    tile
 
     /**
      * 
      * @param {*} ctx 
-     * @param {Tiles} tile 
+     * @param {Tiles} tile
+     */
+    constructor(ctx, tile) {
+        this.ctx= ctx
+        this.tile = tile
+    }
+
+
+    /**
+     * 
      * @param {Vector2} destination 
      * @param {Vector2} size 
      */
-    constructor(ctx, tile, destination, size) {
-        ctx.drawImage(tile.img, tile.x, tile.y, tile.tile_size.x, tile.tile_size.y, destination.x, destination.y, size.x*tile.tile_size.x, size.y*tile.tile_size.y)
+    draw(destination = new Vector2(0,0,), size = new Vector2(12,12)) {
+        this.ctx.drawImage(this.tile.img, this.tile.x, this.tile.y, this.tile.tile_size.x, this.tile.tile_size.y, destination.x, destination.y, size.x, size.y)
     }
 }
