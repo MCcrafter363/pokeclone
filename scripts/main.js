@@ -18,6 +18,7 @@ background.height = window.innerHeight
 let bgctx = background.getContext("2d")
 let ctx = c.getContext("2d")
 let tileSet = document.getElementById("tiles")
+let playerSpriteSheet = document.getElementById("player")
 
 let tilepositionSS = new Vector2(19,6)
 let tileSize = new Vector2(12,12)
@@ -30,9 +31,9 @@ let draw = new DrawTile(bgctx, backdrop)
 
 let housepos = new Vector2(0,0)
 let houseoff = new Vector2(96,96)
-let housescreenpos = new Vector2(120,120)
-let houseTileSize = new Vector2(120,120)
-let housesize = new Vector2(120,120)
+let housescreenpos = new Vector2(-50,-50)
+let houseTileSize = new Vector2(60,60)
+let housesize = new Vector2(600,600)
 let house = new Tiles(tileSet, housepos.x, housepos.y, houseTileSize, houseoff)
 let drawHouse = new DrawTile(bgctx, house)
 
@@ -93,10 +94,14 @@ window.addEventListener("gamepaddisconnected", (event)=>{
 })
 
 let player = {
+    tilesizeX:16,
+    tilesizeY:16,
+    playerposX:0,
+    playerposY:0,
     x:10,
     y:10,
-    width:60,
-    height:60
+    width:90,
+    height:90
 }
 
 function controllerInput(){
@@ -130,6 +135,7 @@ function controllerInput(){
 
 
 function playerUpdate(){
+   // playerDraw.draw(playerscreenpos, playersize)
     if(upPressed == true ){
         player.y -= 20
     }
@@ -158,7 +164,7 @@ playerUpdate()
 
 ctx.clearRect(0,0, c.width, c.height)
 ctx.drawImage(background, 0, 0, c.width, c.height, 0, 0, c.width, c.height)
-ctx.fillRect(player.x, player.y, player.width, player.height)
+ctx.drawImage(playerSpriteSheet, player.playerposX,player.playerposY, player.tilesizeX, player.tilesizeY, player.x, player.y, player.width, player.height)
 
 requestAnimationFrame(update)
 }
